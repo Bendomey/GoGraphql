@@ -1,6 +1,7 @@
 package main
 
 import (
+	"log"
 	"net/http"
 
 	"github.com/graphql-go/graphql"
@@ -13,7 +14,7 @@ var queryType = graphql.NewObject(graphql.ObjectConfig{
 		"latestPost": &graphql.Field{
 			Type: graphql.String,
 			Resolve: func(p graphql.ResolveParams) (interface{}, error) {
-				return "Hello World", nil
+				return "Hey World", nil
 			},
 		},
 	},
@@ -41,5 +42,10 @@ func main() {
 	http.Handle("/graphql", h)
 
 	//and serve!
-	http.ListenAndServe(":5000", nil)
+	port := ":5000"
+	log.Printf(`GraphQL server starting up on http://localhost%v`, port)
+	err := http.ListenAndServe(port, nil)
+	if err != nil {
+		log.Fatalf("Error occured while serving graphql server, %v", err)
+	}
 }
