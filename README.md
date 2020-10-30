@@ -8,8 +8,8 @@ A golang server with graphql as the client interface
 
 ## Run
 - To run this, use 
-> make run
+`make run`
 - To test this, use
-> make test
+`make test`
 - To build this, use
-> make build
+`make build`
